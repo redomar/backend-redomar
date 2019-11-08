@@ -1,0 +1,26 @@
+{
+  "name": "backend-redomar",
+  "version": "0.1.0",
+  "description": "Backend - Severside API and Database Connection using express and mongoDB",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redomar/backend-redomar.git"
+  },
+  "keywords": [
+    "server",
+    "nodeJS",
+    "expressJS",
+    "REST",
+    "API"
+  ],
+  "author": "Mohamed Omar",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/redomar/backend-redomar/issues"
+  },
+  "homepage": "https://github.com/redomar/backend-redomar#readme"
+}
