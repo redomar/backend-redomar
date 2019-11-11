@@ -15,7 +15,7 @@ router.get('/', verify, async (req, res) => {
   }
 
   // Return all posts -- Id, and V values not returned
-  const posts = await Post.find({}, { _id: 0, __v: 0 })
+  const posts = await Post.find({}, { __v: 0 })
   res.send(posts)
 })
 
@@ -68,6 +68,18 @@ router.get('/search/:title', verify, async (req, res) => {
   try {
     const findPost = await Post.findOne({ title: req.params.title })
     if (findPost == null) throw `<b>Post Not found:</b> ${req.params.title}`
+    res.send(findPost)
+    console.log(findPost)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+})
+
+// Search for post via Id /MUST BE EXACT/
+router.get('/id/:id', verify, async (req, res) => {
+  try {
+    const findPost = await Post.findOne({ _id: req.params.id })
+    if (findPost == null) throw `<b>Post Not found:</b> ${req.params.id}`
     res.send(findPost)
     console.log(findPost)
   } catch (error) {
