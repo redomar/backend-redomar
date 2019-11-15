@@ -3,12 +3,7 @@ const mongoose = require('mongoose')
 const env = require('dotenv')
 const app = express()
 
-let port = 3000
-const devPort = 3300
-
-if (devPort){
-	port = devPort
-}
+let port = 3300
 
 // Import Routes
 const authRoute = require('./routes/auth')
