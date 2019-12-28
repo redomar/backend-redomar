@@ -4,8 +4,8 @@ const User = require('../models/user')
 const Post = require('../models/post')
 const { newPostValidation } = require('../models/validation')
 
-// Get posts from Database - Valid tokens only
-router.get('/', verify, async (req, res) => {
+// Get posts from Database - Todo: Valid tokens only
+router.get('/', async (req, res) => {
   // Validate user token
   try {
     userDB = await User.findOne({ _id: req.user })
