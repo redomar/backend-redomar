@@ -6,14 +6,6 @@ const { newPostValidation } = require('../models/validation')
 
 // Get posts from Database - Todo: Valid tokens only
 router.get('/', async (req, res) => {
-  // Validate user token
-  try {
-    userDB = await User.findOne({ _id: req.user })
-    if (!userDB) throw 'Token user not found'
-  } catch (error) {
-    return res.status(401).json({ error: error })
-  }
-
   // Return all posts -- Id, and V values not returned
   const posts = await Post.find({}, { __v: 0 })
   res.send(posts)
