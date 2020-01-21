@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const env = require('dotenv')
+const cors = require('cors')
 const app = express()
 
 const dbHandler = require('./db-handler')
@@ -27,6 +28,7 @@ app.use(function (req, res, next) {
 })
 
 // Middlewears
+app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
