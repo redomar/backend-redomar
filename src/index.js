@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const env = require('dotenv')
 const app = express()
 
+const dbHandler = require('./db-handler')
+
 let port = 3300
 
 // Import Routes
@@ -13,17 +15,16 @@ const postsRoute = require('./routes/posts')
 env.config()
 
 // Connect to db
-mongoose.connect(
-  process.env.DB_CONNECT,
-  { useUnifiedTopology: true, useNewUrlParser: true },
-  () => console.log('Connected to MongoDB')
-)
+dbHandler.connectdb(mongoose)
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*') // update to match the domain you will make the request from
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+  next()
+})
 
 // Middlewears
 app.use(express.urlencoded({ extended: true }))
