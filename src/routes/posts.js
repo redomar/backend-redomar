@@ -82,7 +82,15 @@ router.get('/id/:id', verify, async (req, res) => {
 // Delete post
 router.get('/delete/:postId', verify, async (req, res) => {
   try {
+    const user = await User.findOne({ _id: req.user._id })
     const deletePost = await Post.findById(req.params.postId)
+    try {
+      if (user.name != deletePost.username) {
+        throw 'Cannot delete other users posts'
+      }
+    } catch (error) {
+      return res.status(401).send(`Error ${error}`)
+    }
     await Post.deleteOne({
       _id: req.params.postId
     })
