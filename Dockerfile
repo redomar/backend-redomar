@@ -1,4 +1,4 @@
-FROM node:13.11.0
+FROM node:13-buster-slim
 WORKDIR /usr/src/app
 COPY ./src/ .
 ADD package.json ./
